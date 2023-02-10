@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Slf4j
 @RestController
@@ -42,7 +41,7 @@ public class AutomovelController {
         log.info("Buscando todos automoveis no banco de dados");
         List<AutomovelResponse> automoveis = buscarAutomovel.execute()
                 .stream().map(AutomovelMapper.INSTANCE::toAutomovelResponse)
-                .collect(Collectors.toList());
+                .toList();
 
         return ResponseEntity.ok(automoveis);
     }
